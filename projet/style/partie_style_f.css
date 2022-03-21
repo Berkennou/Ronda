@@ -1,0 +1,41 @@
+body{
+  background-image: url("../images/blank.gif");
+  background-size: 100%;
+}
+#div0{
+  position: relative;
+  left : 20%;
+  width : 20%;
+
+}
+#div3{
+  position: relative;
+  left : 22%;
+  bottom: 750px;
+  width : 20%;
+
+}
+#div1{
+  width : 10%;
+  
+}
+#div1 img{
+  display : block;
+}
+#div2{
+  width : 10%;
+  position: relative;
+  left: 60%;
+  bottom: 800px;
+}
+#div2 img{
+  display : block;
+}
+#divTapis{
+  width : 15%;
+  position: relative;
+  left : 25%;
+  bottom: 370px;
+}
+
+

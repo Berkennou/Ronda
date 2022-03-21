@@ -35,23 +35,44 @@ if(count($f)  == 4)
     $mainsArray = array();
 
     array_push($main,$tapisShuffle[0]);
+    unset($tapisShuffle[$i]);
+    $tapisShuffle = array_values($tapisShuffle);
     for($i=1;$i<13;$i++){
         if($i % 3==0){
              array_push($mainsArray,$main);
              $main=array();
              array_push($main,$tapisShuffle[$i]);
+             unset($tapisShuffle[$i]);
+             $tapisShuffle = array_values($tapisShuffle);
 
              
         }
         else{
             array_push($main,$tapisShuffle[$i]);
+            unset($tapisShuffle[$i]);
+            $tapisShuffle = array_values($tapisShuffle);
         }
     }
     $carteTapis=array();
-    for($i=12;$i<16;$i++){
+    for($i=0;$i<4;$i++){
         array_push($carteTapis,$tapisShuffle[$i]);
+        unset($tapisShuffle[$i]);
+        $tapisShuffle = array_values($tapisShuffle);
 
     }
+    /*$i=0;
+    array_push($carteTapis,$tapisShuffle[$i]);
+    unset($tapisShuffle[$i]);
+    $tapisShuffle = array_values($tapisShuffle);
+    while(count($carteTapis)!=3){
+        $nb = $tapisShuffle[$i];
+        $b = true;
+        for($j=0;$j<count($carteTapis);$j++){
+            if($carteTapis[$j]%4)
+        }
+
+
+    }*/
 
 
     

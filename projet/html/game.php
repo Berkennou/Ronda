@@ -16,15 +16,23 @@ foreach ($p as $partie) {
                     $txt = $txt.$m[$i][$j];
                 }
             }
-            if($i!=3){
-                $txt = $txt."]".',';
-            }
-            else{
-                $txt = $txt."]";
-            }
+            $txt = $txt."]".',';  
+    }
+  }
+  if (isset($partie->elementPartie->CarteTapis)){
+    $ct = $partie->elementPartie->CarteTapis; 
+    $txt = $txt."[";
+    for($j=0;$j<4;$j++){
+        if($j!=3){
+            $txt = $txt.$ct[$j].',';
         }
-    
- }
+        else{
+            $txt = $txt.$ct[$j];
+        }
+    }
+    $txt = $txt."]";
+
+}
 }
 $txt = $txt."]";
 print ($txt); 
