@@ -10,21 +10,27 @@
     <title>Ronda</title>
     <script> 
 var intervalId=null;
+var  hm = null;
 function update(){
+        
         $.ajax({
         method: "GET",
         url: "update.php",
         data:{}
       }).done(function(e) {
         {   
+          if(hm==null){
+            hm=e[0];
+          }
           if(e[0]==4){
             let $playButton = $("<button>Play</button>");
             $playButton.attr('id', 'playbutton');
-            $playButton.attr('onclick', 'window.location.href = "partie_page.php";');
+            $playButton.attr('onclick', 'window.location.href = "partie_page.php?id="+hm;');
             $("div").append($playButton); 
+
             clearTimeout(intervalId);
           }
-          console.log(e[0]);
+          console.log(e[0]+"et "+"hm = "+hm);
                    
         }
       }).fail(function(e) {
