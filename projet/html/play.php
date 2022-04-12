@@ -18,20 +18,27 @@ for($i=0;$i<$longueur;$i++){
 
 
 
+$indiceCarte =$tabRes[0];
+unset($tabRes[0]);
+$tabRes = array_values($tabRes);
+
 $valeurCarte =$tabRes[0];
 unset($tabRes[0]);
 $tabRes = array_values($tabRes);
+
 $score = $tabRes[0];
 unset($tabRes[0]);
 $tabRes = array_values($tabRes);
+
 $p = json_decode(file_get_contents('../parties.json'));
 $m= array();
 $c = array(); 
 
+
 foreach ($p as $partie) {
     if (isset($partie->elementPartie->mains)){
         $m=$partie->elementPartie->mains;
-        unset($m[($id-1)][0]);
+        unset($m[($id-1)][$indiceCarte]);
         $mid = array_values($m[($id-1)]);
         $m[($id-1)] = $mid; 
             

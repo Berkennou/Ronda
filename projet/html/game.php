@@ -10,8 +10,9 @@ foreach ($p as $partie) {
  if (isset($partie->elementPartie->mains)){
         $m=$partie->elementPartie->mains;
             $txt = $txt."[";
-            for($j=0;$j<count($m[($id-1)]);$j++){
-                if($j!=2){
+            $indiceFin = count($m[($id-1)]);
+            for($j=0;$j<$indiceFin;$j++){
+                if($j!=($indiceFin-1)){
                     
                     $txt = $txt.$m[($id-1)][$j].',';
                 }
@@ -31,8 +32,9 @@ foreach ($p as $partie) {
     $ct = array();
     $ct = $partie->elementPartie->CarteTapis; 
     $txt = $txt."[";
-    for($j=0;$j<count($ct);$j++){
-        if($j!=3){
+    $indiceFinCt = count($ct);
+    for($j=0;$j<$indiceFinCt;$j++){
+        if($j!=($indiceFinCt-1)){
             $txt = $txt.$ct[$j].',';
         }
         else{
@@ -54,11 +56,39 @@ if (isset($partie->elementPartie->RondaTringla)){
                 $txt = $txt.$m[$j];
             }
         }
-        $txt = $txt."]";  
+        $txt = $txt."]".',';  
 
 }
 
 
+if (isset($partie->elementPartie->mains)){
+    $m=$partie->elementPartie->mains;
+        $txt = $txt."[";
+        
+        for($j=0;$j<4;$j++){
+            if($j!=3){
+                
+                $txt = $txt.count($m[$j]).',';
+            }
+            else{
+                $txt = $txt.count($m[$j]);
+            }
+        }
+        $txt = $txt."]".',';  
+
+}
+
+if (isset($partie->elementPartie->scoreEquipe1) && isset($partie->elementPartie->scoreEquipe2)){
+    $s1=$partie->elementPartie->scoreEquipe1;
+    $s2=$partie->elementPartie->scoreEquipe2;
+    $txt = $txt."[";
+    $txt = $txt.$s1.',';
+    $txt = $txt.$s2;
+
+        
+    $txt = $txt."]";  
+
+}
 
 }
 $txt = $txt."]";
