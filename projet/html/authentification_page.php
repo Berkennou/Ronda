@@ -26,7 +26,24 @@ function update(){
             let $playButton = $("<button>Play</button>");
             $playButton.attr('id', 'playbutton');
             $playButton.attr('onclick', 'window.location.href = "partie_page.php?id="+hm;');
-            $("div").append($playButton); 
+            $("#divSign").append($playButton); 
+
+            $('body').remove($(".loader"));
+            $(".loader").css("display","none");
+
+
+            let $divP = $("<div>");
+            $divP.attr('class',"pressPlay");
+            $divP.append("<span class='lettre'>G</span>");
+            $divP.append("<span class='lettre'>O</span>");
+            $divP.append("<span class='lettre'>  </span>");
+            $divP.append("<span class='lettre'>P</span>");
+            $divP.append("<span class='lettre'>L</span>");
+            $divP.append("<span class='lettre'>A</span>");
+            $divP.append("<span class='lettre'>Y</span>");
+            $('body').append($divP);
+
+
 
             clearTimeout(intervalId);
           }
@@ -49,6 +66,20 @@ function update(){
       }).done(function(e) {
         {
             $('#signbutton').prop('disabled', true);
+            let $divl = $("<div>");
+            $divl.attr('class',"loader");
+            $divl.append("<span class='lettre'>W</span>");
+            $divl.append("<span class='lettre'>A</span>");
+            $divl.append("<span class='lettre'>I</span>");
+            $divl.append("<span class='lettre'>T</span>");
+            $divl.append("<span class='lettre'>I</span>");
+            $divl.append("<span class='lettre'>N</span>");
+            $divl.append("<span class='lettre'>G</span>");
+            $('body').append($divl);
+
+
+
+
             console.log("ok");
             intervalId = setInterval(update, 1000);
         }
@@ -61,6 +92,7 @@ function update(){
     }
 
     
+    
 
         
 
@@ -71,7 +103,7 @@ function update(){
         <h2>Ronda</h2>
     </header>
     <h2 class='titre'>Sign in</h2>
-    <div>
+    <div id="divSign">
             Pseudo :<input type="text"  id="pseudo" />
             <br/>
             <br/>

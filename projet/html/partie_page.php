@@ -138,7 +138,8 @@
               $('body').append($tscore);
 
 
-              interval= setInterval(game_continue, 1000);
+             
+
                $( "#"+e[0][0] ).click(function() {
                   $( "#"+e[0][0] ).animate({
 
@@ -195,7 +196,7 @@
               });
             });
             
-            
+            interval= setInterval(game_continue, 1000);
 
             
           
@@ -303,6 +304,18 @@
           $('#div2').empty();
           $('#div3').empty();
           $('#tableScore').empty();
+          //Verifier si toutes les mains des joueurs sont vides pour redistribuer
+          let b = false;
+          for(let i=0;i<e[3].length;i++){
+            if(e[3][i] !=0){
+              b= true;
+            }
+          }
+
+          if(b==false){
+            clearTimeout(interval);
+            redistribuer();
+          }
 
           
 
@@ -475,6 +488,48 @@
       
       });
     }
+
+
+
+
+    function redistribuer(){
+        $.ajax({
+        method: "GET",
+        url: "redistribuer.php",
+        data:{}
+      }).done(function(e) {
+        {
+            if(e==1){
+              interval= setInterval(game_continue, 1000);
+            }
+            else if(e==0){
+              window.open("end_of_partie_page.php","Game Over", "height=400px, width=500px, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
+              console.log("partie terminé");
+
+            }
+            else{
+              interval= setInterval(game_continue, 1000);
+            }
+            console.log("c'est fait"+e);
+        }
+
+        
+      }).fail(function(e) {
+        console.log("Fail putain");       
+      
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     
     game();

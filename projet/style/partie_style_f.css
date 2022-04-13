@@ -9,30 +9,33 @@ body{
 
 }
 #div3{
-  position: absolute;
-  left : 22%;
-  top : 110%;
-  width : 30%;
-
-}
-#div1{
   width : 10%;
   position: absolute;
   top : 40%;
+}
+#div3 img{
+  display : block;
+}
+#div1{
+  
+  width : 10%;
+  position: absolute;
+  left: 60%;
+  top :40%;
   
 }
 #div1 img{
   display : block;
 }
 #div2{
-  width : 10%;
+  
   position: absolute;
-  left: 60%;
-  top :40%
+  left : 22%;
+  top : 110%;
+  width : 30%;
+
 }
-#div2 img{
-  display : block;
-}
+
 #divTapis{
   width : 30%;
   position: absolute;

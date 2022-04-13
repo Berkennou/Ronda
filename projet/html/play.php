@@ -46,7 +46,7 @@ foreach ($p as $partie) {
 
     $s1 = $partie->elementPartie->scoreEquipe1;
     $s2 = $partie->elementPartie->scoreEquipe2;
-    if($id == 1 || $id == 4){
+    if($id == 1 || $id == 3){
         $s1 += $score;
     
     }
