@@ -37,6 +37,7 @@
         data:{"id":idd}
       }).done(function(e) {
         { 
+          console.log(e);
           for(let i=0;i<4;i++){
             let $ladiv = $("<div>"); 
             $ladiv.attr('id','div'+i);
@@ -139,64 +140,101 @@
 
 
              
+              if(e[5][idd-1]==1){
+                
+                $( "#"+e[0][0] ).click(function() {
+                    $( "#"+e[0][0] ).animate({
 
-               $( "#"+e[0][0] ).click(function() {
-                  $( "#"+e[0][0] ).animate({
+                      
+                      width: [ "toggle", "swing" ],
+                      height: [ "toggle", "swing" ],
+                      opacity: "toggle"
+                    }, 1000, "linear", function() {
+                      var tourTable = e[5];
+                      if(idd!=4){
+                        
+                        tourTable[idd] = 1;
 
-                    
-                    width: [ "toggle", "swing" ],
-                    height: [ "toggle", "swing" ],
-                    opacity: "toggle"
-                  }, 1000, "linear", function() {
-                    
-                    var tabRes = game_loop(e[0][0],0,e[1]);
-                    play(tabRes);
-                    
-                    
-                    
+                      }
+                      else{
+                        
+                        tourTable[0] = 1;
+
+                      }
+                      tourTable[idd-1] = 0;
+
+                      var tabRes = game_loop(e[0][0],0,e[1]);
+                      play(tabRes,tourTable);
+                      
+                      
+                      
+                    });
                   });
+
+
+
+            $( "#"+e[0][1] ).click(function() {
+                $( "#"+e[0][1] ).animate({
+
+                  
+                  width: [ "toggle", "swing" ],
+                  height: [ "toggle", "swing" ],
+                  opacity: "toggle"
+                }, 1000, "linear", function() {
+                  var tourTable = e[5];
+                  if(idd!=4){
+                        
+                        tourTable[idd] = 1;
+
+                      }
+                      else{
+                        
+                        tourTable[0] = 1;
+
+                      }
+                      tourTable[idd-1] = 0;
+                  var tabRes = game_loop(e[0][1],1,e[1]);
+                  play(tabRes,tourTable);
+                  
+                  
+                  
                 });
-
-
-
-          $( "#"+e[0][1] ).click(function() {
-              $( "#"+e[0][1] ).animate({
-
-                
-                width: [ "toggle", "swing" ],
-                height: [ "toggle", "swing" ],
-                opacity: "toggle"
-              }, 1000, "linear", function() {
-                
-                var tabRes = game_loop(e[0][1],1,e[1]);
-                play(tabRes);
-                
-                
-                
               });
-            });
 
 
 
 
-            $( "#"+e[0][2] ).click(function() {
-              $( "#"+e[0][2] ).animate({
+              $( "#"+e[0][2] ).click(function() {
+                $( "#"+e[0][2] ).animate({
 
-                
-                width: [ "toggle", "swing" ],
-                height: [ "toggle", "swing" ],
-                opacity: "toggle"
-              }, 1000, "linear", function() {
-                
-                var tabRes = game_loop(e[0][2],2,e[1]);
-                play(tabRes);
-                
-                
-                
+                  
+                  width: [ "toggle", "swing" ],
+                  height: [ "toggle", "swing" ],
+                  opacity: "toggle"
+                }, 1000, "linear", function() {
+                  var tourTable = e[5];
+                  if(idd!=4){
+                        
+                        tourTable[idd] = 1;
+
+                      }
+                      else{
+                        
+                        tourTable[0] = 1;
+
+                      }
+                      tourTable[idd-1] = 0;
+                  var tabRes = game_loop(e[0][2],2,e[1]);
+                  play(tabRes,tourTable);
+                  
+                  
+                  
+                });
               });
-            });
-            
-            interval= setInterval(game_continue, 1000);
+              
+              
+          }
+          interval= setInterval(game_continue, 1000);
 
             
           
@@ -220,12 +258,9 @@
         if((valeurCarte%10) ==(cartesDuTapis[i]%10) ){
           scoreCoup =2;
           carteAprendre.push(cartesDuTapis[i]);
-          console.log("ooh yeah");
           for(let j =i ;j<cartesDuTapis.length;j++){
-            console.log("tok");
             if(j+1 != cartesDuTapis.length ){
               if(((cartesDuTapis[j]%10)+1) ==(cartesDuTapis[j+1] %10)){
-                console.log("je suis entré");
                 scoreCoup++;
                 carteAprendre.push(cartesDuTapis[j+1]);
               }
@@ -257,10 +292,17 @@
 
 
 
-    function play(tabRes){
+    function play(tabRes,tourTable){
         var stuff = {};
-        for(var i=0;i<tabRes.length;i++){
-          stuff['key'+i] = tabRes[i];
+
+        for(var i=0;i<tourTable.length;i++){
+          stuff['key'+i] = tourTable[i];
+        }
+
+        var j =0;
+        for(var i=4;i<((tabRes.length)+4);i++){
+          stuff['key'+i] = tabRes[j];
+          j++;
         }
         var idd=($_GET('id'));
         $.ajax({
@@ -422,7 +464,8 @@
 
 
 
-        
+        if(e[5][idd-1]==1){
+          
           $( "#"+e[0][0] ).click(function() {
                   $( "#"+e[0][0] ).animate({
 
@@ -431,9 +474,20 @@
                     height: [ "toggle", "swing" ],
                     opacity: "toggle"
                   }, 1000, "linear", function() {
-                    
+                    var tourTable = e[5];
+                    if(idd!=4){
+                        
+                        tourTable[idd] = 1;
+
+                      }
+                      else{
+                        
+                        tourTable[0] = 1;
+
+                      }
+                      tourTable[idd-1] = 0;
                     var tabRes = game_loop(e[0][0],0,e[1]);
-                    play(tabRes);
+                    play(tabRes,tourTable);
                     
                     
                   });
@@ -449,9 +503,20 @@
                 height: [ "toggle", "swing" ],
                 opacity: "toggle"
               }, 1000, "linear", function() {
-                
+                var tourTable = e[5];
+                if(idd!=4){
+                        
+                        tourTable[idd] = 1;
+
+                      }
+                      else{
+                        
+                        tourTable[0] = 1;
+
+                      }
+                      tourTable[idd-1] = 0;
                 var tabRes = game_loop(e[0][1],1,e[1]);
-                play(tabRes);
+                play(tabRes,tourTable);
                 
                 
               });
@@ -468,13 +533,26 @@
                 height: [ "toggle", "swing" ],
                 opacity: "toggle"
               }, 1000, "linear", function() {
-                
+                var tourTable = e[5];
+                if(idd!=4){
+                        
+                        tourTable[idd] = 1;
+
+                      }
+                      else{
+                        
+                        tourTable[0] = 1;
+
+                      }
+                      tourTable[idd-1] = 0;
                 var tabRes = game_loop(e[0][2],2,e[1]);
-                play(tabRes);
+                play(tabRes,tourTable);
                 
                 
               });
             });
+
+          }
             
             
         

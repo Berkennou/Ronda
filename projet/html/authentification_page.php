@@ -81,7 +81,7 @@ function update(){
 
 
             console.log("ok");
-            intervalId = setInterval(update, 1000);
+            intervalId = setInterval(update, 100);
         }
 
         

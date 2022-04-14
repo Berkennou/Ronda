@@ -17,15 +17,16 @@
         {   
 
             let $tscore = $("<table>");
+            $tscore.attr('id','tableScore');
             $tscore.append($("<tr><td>Score Equipe 1</td><td>"+e[4][0]+"</td></tr>"));
             $tscore.append($("<tr><td>Score Equipe 2</td><td>"+e[4][1]+"</td></tr>"));
-            $tscore.attr('id','tableScore');
+            
             $('body').append($tscore);
             if(e[4][0]>e[4][1]){
-                $('body').append(("<span>The Winner is : EQUIPE 1 </span>"));
+                $('body').append("<span>The Winner is : EQUIPE 1 </span>");
             }
             else{
-                $('body').append(("<span>The Winner is : EQUIPE 2 </span>"));
+                $('body').append("<span>The Winner is : EQUIPE 2 </span>");
             }
             console.log("partie terminé pop up affiché");
 

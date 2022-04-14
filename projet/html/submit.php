@@ -115,9 +115,8 @@ if(count($f)  == 4)
     $parties = json_decode(file_get_contents('../parties.json'),true);
     $parties = array();
     $id = count($parties);
-    $par = ["joueurs"=>$f,"mains"=>$mainsArray,"RondaTringla"=>$arrayRondaTringla,"CarteTapis"=>$carteTapis,"scoreEquipe1"=>0,"scoreEquipe2"=>0,"tapis"=>$tapisShuffle];
+    $par = ["joueurs"=>$f,"mains"=>$mainsArray,"RondaTringla"=>$arrayRondaTringla,"CarteTapis"=>$carteTapis,"scoreEquipe1"=>0,"scoreEquipe2"=>0,"tapis"=>$tapisShuffle,"tour"=>[1,0,0,0]];
     $newA = ["idPartie"=>$id,"elementPartie"=>$par];
-    
     array_push($parties,$newA);
     $newjsonstring2 = json_encode($parties);
     file_put_contents('../parties.json',$newjsonstring2);

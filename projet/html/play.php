@@ -4,8 +4,17 @@ $longueur = $_GET['len'];
 
 $tab = $_GET["str"];
 $tab = json_decode("$tab", true);
+
+$tabTour = array();
+for($i=0;$i<4;$i++){
+    $str = ("key".$i);
+    $e = $tab[$str];
+    array_push($tabTour,$e);
+}
+
+
 $tabRes = array();
-for($i=0;$i<$longueur;$i++){
+for($i=4;$i<($longueur+4);$i++){
     $str = ("key".$i);
     $e = $tab[$str];
     array_push($tabRes,$e);
@@ -78,7 +87,7 @@ foreach ($p as $partie) {
 
 
 
-$par = ["joueurs"=>$f,"mains"=>$m,"RondaTringla"=>$aRt,"CarteTapis"=>$cf,"scoreEquipe1"=>$s1,"scoreEquipe2"=>$s2,"tapis"=>$tapisShuffle];
+$par = ["joueurs"=>$f,"mains"=>$m,"RondaTringla"=>$aRt,"CarteTapis"=>$cf,"scoreEquipe1"=>$s1,"scoreEquipe2"=>$s2,"tapis"=>$tapisShuffle,"tour"=>$tabTour];
 $newA = ["idPartie"=>$idd,"elementPartie"=>$par];
 
 

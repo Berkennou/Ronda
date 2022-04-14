@@ -86,6 +86,24 @@ if (isset($partie->elementPartie->scoreEquipe1) && isset($partie->elementPartie-
     $txt = $txt.$s2;
 
         
+    $txt = $txt."]".',';  
+
+}
+
+if (isset($partie->elementPartie->tour)){
+    $tour=$partie->elementPartie->tour;
+    $txt = $txt."[";
+    for($j=0;$j<4;$j++){
+        if($j!=3){
+            
+            $txt = $txt.$tour[$j].',';
+        }
+        else{
+            $txt = $txt.$tour[$j];
+        }
+    }
+
+        
     $txt = $txt."]";  
 
 }
