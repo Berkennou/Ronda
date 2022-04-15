@@ -250,6 +250,16 @@
 
 
 
+    function arrayEquals(a, b) {
+    return Array.isArray(a) &&
+        Array.isArray(b) &&
+        a.length == b.length &&
+        a.length !=0 &&
+        b.length !=0 &&
+        a.every((val, index) => val == b[index]);
+}
+
+
     function game_loop(valeurCarte,indiceCarte,cartesDuTapis){
       var scoreCoup = 0 ; 
       cartesDuTapis = cartesDuTapis.sort((a, b) => (a%10) - (b%10));
@@ -272,6 +282,11 @@
           break;
             
         }
+      }
+
+      if(arrayEquals(carteAprendre,cartesDuTapis)){
+        scoreCoup++;
+        
       }
 
       var tabRes = [];
@@ -467,11 +482,15 @@
         if(e[5][idd-1]==1){
           
           $( "#"+e[0][0] ).click(function() {
+                  let pos=$( "#"+e[0][0] )[0].getBoundingClientRect();
+                  let posTapis=$( "#divTapis" )[0].getBoundingClientRect();
+                  
+                  $( "#"+e[0][0] ).appendTo("body").css({"left":pos.left,"top":pos.top,"position":"absolute"});
                   $( "#"+e[0][0] ).animate({
 
-                    
-                    width: [ "toggle", "swing" ],
-                    height: [ "toggle", "swing" ],
+                    transform:"scale(2)",
+                    left:posTapis.left,
+                    top: posTapis.top ,
                     opacity: "toggle"
                   }, 1000, "linear", function() {
                     var tourTable = e[5];
@@ -496,11 +515,15 @@
 
 
           $( "#"+e[0][1] ).click(function() {
+            let pos=$( "#"+e[0][1] )[0].getBoundingClientRect();
+            let posTapis=$( "#divTapis" )[0].getBoundingClientRect();
+            $( "#"+e[0][1] ).appendTo("body").css({"left":pos.left,"top":pos.top,"position":"absolute"});
               $( "#"+e[0][1] ).animate({
 
                 
-                width: [ "toggle", "swing" ],
-                height: [ "toggle", "swing" ],
+                transform:"scale(2)",
+                left:posTapis.left,
+                top: posTapis.top,
                 opacity: "toggle"
               }, 1000, "linear", function() {
                 var tourTable = e[5];
@@ -526,11 +549,16 @@
 
 
             $( "#"+e[0][2] ).click(function() {
+              let pos=$( "#"+e[0][2] )[0].getBoundingClientRect();
+              let posTapis=$( "#divTapis" )[0].getBoundingClientRect();
+              $( "#"+e[0][2] ).appendTo("body").css({"left":pos.left,"top":pos.top,"position":"absolute"});
+
               $( "#"+e[0][2] ).animate({
 
                 
-                width: [ "toggle", "swing" ],
-                height: [ "toggle", "swing" ],
+                transform:"scale(2)",
+                left:posTapis.left,
+                top: posTapis.top,
                 opacity: "toggle"
               }, 1000, "linear", function() {
                 var tourTable = e[5];
