@@ -104,9 +104,29 @@ if (isset($partie->elementPartie->tour)){
     }
 
         
-    $txt = $txt."]";  
+    $txt = $txt."]".',';  
 
 }
+if (isset($partie->elementPartie->missa)){
+    $missa = $partie->elementPartie->missa;
+    $txt = $txt."[".$missa."]".",";
+    
+
+}
+if (isset($partie->elementPartie->djerya)){
+    $djerya = $partie->elementPartie->djerya;
+    $txt = $txt."[".$djerya."]".",";
+    
+
+}
+
+if (isset($partie->elementPartie->carteArchem)){
+    $carteArchem = $partie->elementPartie->carteArchem;
+    $txt = $txt."[".$carteArchem[0].",".$carteArchem[1]."]";
+    
+
+}
+
 
 }
 $txt = $txt."]";

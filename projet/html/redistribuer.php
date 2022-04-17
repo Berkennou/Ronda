@@ -73,21 +73,43 @@ foreach ($p as $partie) {
                 $partie->elementPartie->tapis = $tapisShuffle;
                 $partie->elementPartie->RondaTringla = $arrayRondaTringla;
                 $partie->elementPartie->mains = $mainsArray;
-                print 1;
+
+                $djerya = $partie->elementPartie->djerya;
+                $partie->elementPartie->djerya = $djerya-1;
+                
+                $r = 99;
+                print "[".$r.",".$r."]";
                 
 
 
 
             }
             else{
-                print 0;
+
+                $dernierEncaissant =$partie->elementPartie->dernierEncaissant[0];
+                if($partie->elementPartie->dernierEncaissant[1]==0){
+                    if($dernierEncaissant == 1 || $dernierEncaissant == 3){
+                        $partie->elementPartie->scoreEquipe1 += count($partie->elementPartie->CarteTapis);
+                        $partie->elementPartie->dernierEncaissant[1] = 1;
+                    
+                    }
+                    else{
+                        $partie->elementPartie->scoreEquipe2 += count($partie->elementPartie->CarteTapis);
+                        $partie->elementPartie->dernierEncaissant[1] = 1;
+                            
+                    }
+            }
+
+                print "[".$dernierEncaissant.",".count($partie->elementPartie->CarteTapis)."]";
             }
 
                     
         }
     }
     else{
-        print 2;
+        $r = 99;
+        print "[".$r.",".$r."]";
+        
     }
 
 

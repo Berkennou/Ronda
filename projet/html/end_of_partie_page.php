@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../style/partie_style_f.css" media="screen" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="author" content="Berkennou Brahim - Boukari Idir">
     <title>End Of Partie</title>
 </head>
 <script>
+
+    function $_GET(param) {
+          var vars = {};
+          window.location.href.replace( location.hash, '' ).replace( 
+            /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+            function( m, key, value ) { // callback
+              vars[key] = value !== undefined ? value : '';
+            }
+          );
+
+          if ( param ) {
+            return vars[param] ? vars[param] : null;	
+          }
+          return vars;
+        }
+
+
+
+
     function endPartie(){
         $.ajax({
         method: "GET",
         url: "game.php",
-        data:{}
+        data:{"id":($_GET('id'))}
       }).done(function(e) {
         {   
 

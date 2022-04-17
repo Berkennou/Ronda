@@ -5,8 +5,14 @@ $longueur = $_GET['len'];
 $tab = $_GET["str"];
 $tab = json_decode("$tab", true);
 
+//Recupération de l'information si il y en ou pas un Missa et actualiser le json ensuite
+
+$missa = $tab["key0"];
+$rchem = $tab["key1"];
+
+
 $tabTour = array();
-for($i=0;$i<4;$i++){
+for($i=2;$i<6;$i++){
     $str = ("key".$i);
     $e = $tab[$str];
     array_push($tabTour,$e);
@@ -14,7 +20,7 @@ for($i=0;$i<4;$i++){
 
 
 $tabRes = array();
-for($i=4;$i<($longueur+4);$i++){
+for($i=6;$i<($longueur+6);$i++){
     $str = ("key".$i);
     $e = $tab[$str];
     array_push($tabRes,$e);
@@ -33,6 +39,7 @@ $tabRes = array_values($tabRes);
 
 $valeurCarte =$tabRes[0];
 unset($tabRes[0]);
+
 $tabRes = array_values($tabRes);
 
 $score = $tabRes[0];
@@ -43,6 +50,7 @@ $p = json_decode(file_get_contents('../parties.json'));
 $m= array();
 $c = array(); 
 
+$carteArchem = -1;
 
 foreach ($p as $partie) {
     if (isset($partie->elementPartie->mains)){
@@ -78,16 +86,25 @@ foreach ($p as $partie) {
         } 
        
     }
-
+    $dernierEncaissant = $partie->elementPartie->dernierEncaissant[0]; 
+    if($score==0){
+        $carteArchem = $valeurCarte;
+    }
+    else{
+        $dernierEncaissant = $id;
+    }
+    
+    $carteArchemYn = [$carteArchem,$rchem];
     $aRt = $partie->elementPartie->RondaTringla;
     $f = $partie->elementPartie->joueurs;
     $tapisShuffle = $partie->elementPartie->tapis;
     $idd = $partie->idPartie;
+    $djerya = $partie->elementPartie->djerya;
 }
 
 
 
-$par = ["joueurs"=>$f,"mains"=>$m,"RondaTringla"=>$aRt,"CarteTapis"=>$cf,"scoreEquipe1"=>$s1,"scoreEquipe2"=>$s2,"tapis"=>$tapisShuffle,"tour"=>$tabTour];
+$par = ["joueurs"=>$f,"mains"=>$m,"RondaTringla"=>$aRt,"CarteTapis"=>$cf,"scoreEquipe1"=>$s1,"scoreEquipe2"=>$s2,"tapis"=>$tapisShuffle,"tour"=>$tabTour,"missa"=>$missa,"djerya"=>$djerya,"carteArchem"=>$carteArchemYn,"dernierEncaissant"=>[$dernierEncaissant,0]];
 $newA = ["idPartie"=>$idd,"elementPartie"=>$par];
 
 

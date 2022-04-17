@@ -10,6 +10,9 @@
     <title>Ronda</title>
     <script> 
     var interval=null;
+    var missa = 0;
+    var rchem = 0;
+    var djerya = null;
 
 
         function $_GET(param) {
@@ -138,6 +141,11 @@
               $tscore.attr('id','tableScore');
               $('body').append($tscore);
 
+              djerya = e[7][0];
+              let $djeryaSpan = $("<span>Djerya N° "+djerya+"</span>");
+              $djeryaSpan.attr('id','djeryaSpan');
+              $('body').append($djeryaSpan);
+
 
              
               if(e[5][idd-1]==1){
@@ -163,8 +171,8 @@
                       }
                       tourTable[idd-1] = 0;
 
-                      var tabRes = game_loop(e[0][0],0,e[1]);
-                      play(tabRes,tourTable);
+                      var tabRes = game_loop(e[0][0],0,e[1],e[8][0]);
+                      play(tabRes,tourTable,missa);
                       
                       
                       
@@ -193,8 +201,8 @@
 
                       }
                       tourTable[idd-1] = 0;
-                  var tabRes = game_loop(e[0][1],1,e[1]);
-                  play(tabRes,tourTable);
+                  var tabRes = game_loop(e[0][1],1,e[1],e[8][0]);
+                  play(tabRes,tourTable,missa);
                   
                   
                   
@@ -224,8 +232,8 @@
 
                       }
                       tourTable[idd-1] = 0;
-                  var tabRes = game_loop(e[0][2],2,e[1]);
-                  play(tabRes,tourTable);
+                  var tabRes = game_loop(e[0][2],2,e[1],e[8][0]);
+                  play(tabRes,tourTable,missa);
                   
                   
                   
@@ -260,7 +268,7 @@
 }
 
 
-    function game_loop(valeurCarte,indiceCarte,cartesDuTapis){
+    function game_loop(valeurCarte,indiceCarte,cartesDuTapis,carteArchem){
       var scoreCoup = 0 ; 
       cartesDuTapis = cartesDuTapis.sort((a, b) => (a%10) - (b%10));
       var carteAprendre = [];
@@ -286,7 +294,12 @@
 
       if(arrayEquals(carteAprendre,cartesDuTapis)){
         scoreCoup++;
+        missa = 1;
         
+      }
+      if(carteArchem!=-1 && (carteArchem%10) == (valeurCarte%10)){
+        scoreCoup++;
+        rchem = 1;
       }
 
       var tabRes = [];
@@ -307,15 +320,18 @@
 
 
 
-    function play(tabRes,tourTable){
+    function play(tabRes,tourTable,missa){
         var stuff = {};
 
-        for(var i=0;i<tourTable.length;i++){
-          stuff['key'+i] = tourTable[i];
+        stuff['key0']  = missa;
+        stuff['key1']  = rchem;
+
+        for(var i=2;i<tourTable.length+2;i++){
+          stuff['key'+i] = tourTable[i-2];
         }
 
         var j =0;
-        for(var i=4;i<((tabRes.length)+4);i++){
+        for(var i=6;i<((tabRes.length)+6);i++){
           stuff['key'+i] = tabRes[j];
           j++;
         }
@@ -361,6 +377,7 @@
           $('#div2').empty();
           $('#div3').empty();
           $('#tableScore').empty();
+          
           //Verifier si toutes les mains des joueurs sont vides pour redistribuer
           let b = false;
           for(let i=0;i<e[3].length;i++){
@@ -374,6 +391,14 @@
             redistribuer();
           }
 
+
+          if(djerya!=e[7][0]){
+            $('#djeryaSpan').remove();
+            djerya = e[7][0];
+            let $djeryaSpan = $("<span>Djerya N° "+djerya+"</span>");
+            $djeryaSpan.attr('id','djeryaSpan');
+            $('body').append($djeryaSpan);
+          }
           
 
 
@@ -398,8 +423,7 @@
                   
             }
              if(i==(idd-1)){
-              for(let j=0;j<(e[0].length);j++){
-                
+              for(let j=0;j<(e[0].length);j++){        
                 let $image = $("<img>");
                 $image.attr('id',e[0][j]);
                 $image.attr('src', '../images/'+e[0][j]+'.gif');
@@ -474,6 +498,31 @@
         $tscore.append($("<tr><td>Score Equipe 1</td><td>"+e[4][0]+"</td></tr>"));
         $tscore.append($("<tr><td>Score Equipe 2</td><td>"+e[4][1]+"</td></tr>"));
 
+        $missaExiste =  document.getElementById('missaSpan');
+        if($missaExiste!=null){
+          $('#missaSpan').remove();
+        }
+        $rchemExiste =  document.getElementById('rchemSpan');
+        if($rchemExiste!=null){
+          $('#rchemSpan').remove();
+        }
+
+        if(e[6][0]==1){
+          let $missaSpan = $("<span>Missa +1</span>");
+          $missaSpan.attr('id','missaSpan');
+          $('body').append($missaSpan);
+          missa = 0;
+          
+        }
+
+        if(e[8][1]==1){
+          let $rchemSpan = $("<span>Rchem +1</span>");
+          $rchemSpan.attr('id','rchemSpan');
+          $('body').append($rchemSpan);
+          rchem = 0;
+          
+        }
+
 
 
 
@@ -505,8 +554,8 @@
 
                       }
                       tourTable[idd-1] = 0;
-                    var tabRes = game_loop(e[0][0],0,e[1]);
-                    play(tabRes,tourTable);
+                    var tabRes = game_loop(e[0][0],0,e[1],e[8][0]);
+                    play(tabRes,tourTable,missa);
                     
                     
                   });
@@ -538,8 +587,8 @@
 
                       }
                       tourTable[idd-1] = 0;
-                var tabRes = game_loop(e[0][1],1,e[1]);
-                play(tabRes,tourTable);
+                var tabRes = game_loop(e[0][1],1,e[1],e[8][0]);
+                play(tabRes,tourTable,missa);
                 
                 
               });
@@ -573,8 +622,8 @@
 
                       }
                       tourTable[idd-1] = 0;
-                var tabRes = game_loop(e[0][2],2,e[1]);
-                play(tabRes,tourTable);
+                var tabRes = game_loop(e[0][2],2,e[1],e[8][0]);
+                play(tabRes,tourTable,missa);
                 
                 
               });
@@ -593,7 +642,7 @@
                
       
       });
-    }
+    } 
 
 
 
@@ -605,11 +654,15 @@
         data:{}
       }).done(function(e) {
         {
-            if(e==1){
+            if(e[0]==99){
               interval= setInterval(game_continue, 1000);
             }
-            else if(e==0){
-              window.open("end_of_partie_page.php","Game Over", "height=400px, width=500px, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
+            else if(e[0]>=1 && e[0]<=4){
+              let $tapisSpan = $("<span>Tapis + "+e[1]+"</span>");
+              $tapisSpan.attr('id','tapisSpan');
+              $('body').append($tapisSpan);
+
+              window.open("end_of_partie_page.php?id="+$_GET('id'),"Game Over", "height=400px, width=500px, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
               console.log("partie terminé");
 
             }
