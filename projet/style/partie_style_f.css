@@ -1,27 +1,30 @@
 body{
-  background-image: url("../images/blank.gif");
-  background-size: 100%;
+  background-image: url("../images/back_rouge_2.jpg");
+  background-size: 80%;
+  background-attachment: fixed;
 }
 #div0{
   position: absolute;
-  left : 20%;
-  width : 30%;
+  left : 38%;
+  top :2%;
+  width : auto;
 
 }
 #div3{
-  width : 10%;
+  width : auto;
   position: absolute;
-  top : 40%;
+  top : 35%;
+  left : 12%;
 }
 #div3 img{
   display : block;
 }
 #div1{
   
-  width : 10%;
+  width : auto;
   position: absolute;
-  left: 60%;
-  top :40%;
+  left: 77%;
+  top :35%;
   
 }
 #div1 img{
@@ -30,23 +33,23 @@ body{
 #div2{
   
   position: absolute;
-  left : 22%;
-  top : 110%;
-  width : 30%;
+  left : 38%;
+  top : 80%;
+  width : auto;
 
 }
 
 #divTapis{
   width : 30%;
   position: absolute;
-  left : 15%;
-  top : 55%;
+  left : 35%;
+  top : 32%;
 }
 
 #tableScore {
   position : absolute;
-  left : 80%;
-  top : 30%;
+  left : 75%;
+  top : 5%;
   border: 3px solid;
   table-layout: fixed;
   width: 200px;
@@ -63,7 +66,7 @@ tr, td{
 #missaSpan {
   position : absolute;
   left : 82%;
-  top : 50%;
+  top : 21%;
   background-color: grey;
   color : white;
   
@@ -71,31 +74,63 @@ tr, td{
 
 #rchemSpan {
   position : absolute;
-  left : 82%;
-  top : 55%;
+  left : 76%;
+  top : 21%;
   background-color: grey;
   color : white;
   
 }
 #tapisSpan {
   position : absolute;
-  left :70%;
-  top : 52%;
+  left :85%;
+  top : 40%;
   background-color: grey;
   color : white;
+  font-size: 60px;
   
 }
 
 
 #djeryaSpan {
   position : absolute;
-  left : 82%;
-  top : 10%;
-  background-color: grey;
-  color : white;
+  left : 5%;
+  top : 1%;
+  
+  color :   white;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
   
 }
 
+#djeryaSpan :hover{
+  color : black;
+
+}
 
 
+#divPaquet{
+  position: absolute;
+  left :2%;
+  top : 5%;
+  width: auto;
+
+}
+
+#imagePaquet1{
+  position: absolute;
+  left: 15%;
+  top: 10%;
+  
+}
+#imagePaquet2{
+  position: absolute;
+  left: 25%;
+  top: 20%;
+}
+#imagePaquet3{
+  position: absolute;
+  left: 35%;
+  top : 30%;
+}
 

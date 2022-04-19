@@ -44,12 +44,39 @@
             
             $('body').append($tscore);
             if(e[4][0]>e[4][1]){
-                $('body').append("<span>The Winner is : EQUIPE 1 </span>");
+                displayNames(0,2);
+                
             }
             else{
-                $('body').append("<span>The Winner is : EQUIPE 2 </span>");
+              displayNames(1,3);
+                
             }
             console.log("partie terminé pop up affiché");
+
+            
+            
+        }
+      
+      }).fail(function(e) {
+        console.log("fail ya zeh");       
+      
+      });
+    }
+
+
+
+
+
+
+    function displayNames(indiceOne,indiceTwo){
+        $.ajax({
+        method: "GET",
+        url: "name.php",
+        data:{}
+      }).done(function(e) {
+        {   
+          $('body').append("<span>The Winners are"+e[indiceOne] + e[indiceTwo]+ "</span>");
+            
 
             
             

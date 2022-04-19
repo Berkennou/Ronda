@@ -11,6 +11,7 @@
     <script> 
 var intervalId=null;
 var  hm = null;
+
 function update(){
         
         $.ajax({
@@ -26,6 +27,7 @@ function update(){
             let $playButton = $("<button>Play</button>");
             $playButton.attr('id', 'playbutton');
             $playButton.attr('onclick', 'window.location.href = "partie_page.php?id="+hm;');
+            $playButton.attr('class','buttons');
             $("#divSign").append($playButton); 
 
             $('body').remove($(".loader"));
@@ -79,7 +81,7 @@ function update(){
 
 
 
-
+            displayHelp();
             console.log("ok");
             intervalId = setInterval(update, 100);
         }
@@ -91,7 +93,16 @@ function update(){
       });
     }
 
-    
+    function displayHelp(){
+      var level = $("#level").val();
+
+      if(level =="beginner"||level == "Pre-intermediate" || level=="intermidiate" ){
+        $p =$("<p>Et bah les conseil c'est aprés</p>");
+        $p.attr('id','helpText');
+        $('body').append($p);  
+      
+    }
+  }
     
 
         
@@ -99,15 +110,13 @@ function update(){
     </script>
 </head>
 <body>
-    <header>
-        <h2>Ronda</h2>
-    </header>
+    <span id="titreR">RONDA</span>
     <h2 class='titre'>Sign in</h2>
     <div id="divSign">
-            Pseudo :<input type="text"  id="pseudo" />
+            <input type="text"  id="pseudo" placeholder="Username" />
             <br/>
             <br/>
-            <label for="level">Level : </label>
+            <label for="level"> </label>
             <select id="level">
                 <option value="beginner">Beginner</option>
                 <option value="Pre-intermediate">Pre-intermediate</option>
@@ -116,19 +125,20 @@ function update(){
                 <option value="mastery">Mastery</option>
             </select> 
             <br/><br/>     
-            <button id="signbutton" onclick="submit()"> Sign </button>
+            <button id="signbutton" class='buttons' onclick="submit()"> Sign </button>
             <br/>
 
     </div>
+    <span class='regle' onclick="window.open('regle.html', '_blank');">Régles & Documuentation</span>
+    <div id="imageTourne">
+      <img id="im0" class="imgtourne" src="../images/0.gif" />
+      <img id="im1" class="imgtourne" src="../images/7.gif" />  
+      <img id="im2" class="imgtourne" src="../images/14.gif" />
+      <img id="im3" class="imgtourne" src="../images/9.gif" />
+  </div>
 
-
-
-    <footer>
-        <p>&copy;CopyRight</p>
-    </footer>
-
-   
     
 </body>
+
 
 </html>

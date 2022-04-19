@@ -102,7 +102,7 @@
               for(let j=0;j<3;j++){
                   
                   let $image = $("<img>");
-                  $image.attr('src', '../images/back.gif');
+                  $image.attr('src', '../images/back.jpg');
                   $image.attr('width','50px');
                   $image.attr('width','100px');
                   $ladiv.append($image);
@@ -142,9 +142,37 @@
               $('body').append($tscore);
 
               djerya = e[7][0];
-              let $djeryaSpan = $("<span>Djerya N° "+djerya+"</span>");
+              let $djeryaSpan = $("<span>Djerya "+djerya+"</span>");
               $djeryaSpan.attr('id','djeryaSpan');
               $('body').append($djeryaSpan);
+
+              let $ladivP = $("<div>");
+              $ladivP.attr('id','divPaquet'); 
+              for(let k=0;k<4;k++){
+                  let $image = $("<img>");
+                  $image.attr('id','imagePaquet'+k);
+                  $image.attr('src', '../images/back.jpg');
+                  $image.attr('width','50px');
+                  $image.attr('width','100px');
+                  $ladivP.append($image);
+              }
+
+              $('body').append($ladivP);
+
+
+
+              for(var i=0;i<4;i++){
+                if(e[5][i]==1){
+                  $("#div"+i).css("border-width",'5px');
+                  $("#div"+i).css("border-style",'solid');
+                  $("#div"+i).css("border-color",'gray');
+                  $("#div"+i).css("border-radius",'6px');
+                
+                }
+                else{
+                  $("#div"+i).css("border-width" ,"0px");
+                }
+        }
 
 
              
@@ -242,7 +270,7 @@
               
               
           }
-          interval= setInterval(game_continue, 1000);
+          interval= setInterval(game_continue, 500);
 
             
           
@@ -395,9 +423,13 @@
           if(djerya!=e[7][0]){
             $('#djeryaSpan').remove();
             djerya = e[7][0];
-            let $djeryaSpan = $("<span>Djerya N° "+djerya+"</span>");
+            let $djeryaSpan = $("<span>Djerya "+djerya+"</span>");
             $djeryaSpan.attr('id','djeryaSpan');
             $('body').append($djeryaSpan);
+          }
+
+          if(djerya==0){
+            $("#divPaquet").remove();
           }
           
 
@@ -459,7 +491,7 @@
               for(let j=0;j<e[3][i];j++){
                   
                   let $image = $("<img>");
-                  $image.attr('src', '../images/back.gif');
+                  $image.attr('src', '../images/back.jpg');
                   $image.attr('width','50px');
                   $image.attr('width','100px');
                   $ladiv.append($image);
@@ -525,9 +557,20 @@
 
 
 
+        for(var i=0;i<4;i++){
+          if(e[5][i]==1){
+            $("#div"+i).css("border-width",'5px');
+            $("#div"+i).css("border-style",'solid');
+            $("#div"+i).css("border-color",'gray');
+            $("#div"+i).css("border-radius",'6px');
+          
+          }
+          else{
+            $("#div"+i).css("border-width" ,"0px");
+          }
+        }
 
-
-
+        
         if(e[5][idd-1]==1){
           
           $( "#"+e[0][0] ).click(function() {
