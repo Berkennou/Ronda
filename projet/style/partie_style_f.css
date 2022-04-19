@@ -2,6 +2,7 @@ body{
   background-image: url("../images/back_rouge_2.jpg");
   background-size: 80%;
   background-attachment: fixed;
+  padding : 10%;
 }
 #div0{
   position: absolute;
@@ -80,6 +81,74 @@ tr, td{
   color : white;
   
 }
+#rondaSpan0 {
+  position : absolute;
+  left : 76%;
+  top : 23%;
+  background-color: grey;
+  color : white;
+  
+}
+#rondaSpan1 {
+  position : absolute;
+  left : 76%;
+  top : 25%;
+  background-color: grey;
+  color : white;
+  
+}
+#rondaSpan2 {
+  position : absolute;
+  left : 76%;
+  top : 27%;
+  background-color: grey;
+  color : white;
+  
+}
+#rondaSpan3 {
+  position : absolute;
+  left : 76%;
+  top : 29%;
+  background-color: grey;
+  color : white;
+  
+}
+
+#tringlaSpan0 {
+  position : absolute;
+  left : 82%;
+  top : 23%;
+  background-color: grey;
+  color : white;
+  
+}
+#tringlaSpan1 {
+  position : absolute;
+  left : 82%;
+  top : 25%;
+  background-color: grey;
+  color : white;
+  
+}
+#tringlaSpan2 {
+  position : absolute;
+  left : 82%;
+  top : 27%;
+  background-color: grey;
+  color : white;
+  
+}
+#tringlaSpan3 {
+  position : absolute;
+  left : 82%;
+  top : 29%;
+  background-color: grey;
+  color : white;
+  
+}
+
+
+
 #tapisSpan {
   position : absolute;
   left :85%;

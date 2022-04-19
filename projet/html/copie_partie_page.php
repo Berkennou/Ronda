@@ -13,11 +13,6 @@
     var missa = 0;
     var rchem = 0;
     var djerya = null;
-    var idPlayer = ($_GET('id'));
-    var rondaCompte = false;
-    var tringlaCompte = false;
-    var rondaDisp = false;
-    var tringlaDisp = false;
 
 
         function $_GET(param) {
@@ -66,8 +61,8 @@
         $('body').append($ladiv);
       }
 
-      function displayCartesBackOtherPlayers($ladiv,nbCartes){
-        for(let j=0;j<nbCartes;j++){    
+      function displayCartesBackOtherPlayers($ladiv){
+        for(let j=0;j<3;j++){    
                   let $image = $("<img>");
                   $image.attr('src', '../images/back.jpg');
                   $image.attr('width','50px');
@@ -159,47 +154,7 @@
         return tourTable;
       }
 
-      function displayRondaSpan(rondaTringlaTable){
-          if(rondaDisp==false){
-              for(var i=0;i<4;i++){
-                if(rondaTringlaTable[i]==1){
-                  let $rondaSpan = $("<span>Ronda +1</span>");
-                  $rondaSpan.attr('id','rondaSpan'+i);
-                  $('body').append($rondaSpan);
-                }
-            }
-            rondaDisp = true;
-            console.log("c est fais ronda afficher s il y en a");
-          }
-      }
 
-      function displayTringlaSpan(rondaTringlaTable){  
-        if((tringlaDisp==false)){
-          for(var i=0;i<4;i++){
-            if(rondaTringlaTable[i]==2){
-              let $tringlaSpan = $("<span>Tringla +5</span>");
-              $tringlaSpan.attr('id','tringlaSpan'+i);
-              $('body').append($tringlaSpan);
-            }
-          }
-          tringlaDisp = true;
-          console.log("c est fais tringla afficher s il y en a ");
-        }
-      }
-
-      function removeRondaTringlaSpan(){
-            for(var i=0;i<4;i++){
-              $rondaExiste =  document.getElementById('rondaSpan'+i);
-              if($rondaExiste!=null){
-                $('#rondaSpan'+i).remove();
-              }
-            $tringlaExiste =  document.getElementById('tringlaSpan'+i);
-            if($tringlaExiste!=null){
-              $('#tringlaSpan'+i).remove();
-          
-          }
-          }
-      }
 
         
 
@@ -234,7 +189,7 @@
 
             else{
 
-              displayCartesBackOtherPlayers($ladiv,e[3][i]);
+              displayCartesBackOtherPlayers($ladiv);
                       
                 if(e[2][i]==1){
                   displayRondaSymbole($ladiv);
@@ -271,7 +226,7 @@
                       opacity: "toggle"
                     }, 1000, "linear", function() {
                       var tourTable=changeTour(e[5],idd);
-                      var tabRes = game_loop(e[0][0],0,e[1],e[8][0],e[2]);
+                      var tabRes = game_loop(e[0][0],0,e[1],e[8][0]);
                       play(tabRes,tourTable,missa);          
                       
                     });
@@ -287,7 +242,7 @@
                   opacity: "toggle"
                 }, 1000, "linear", function() {
                   var tourTable=changeTour(e[5],idd);
-                  var tabRes = game_loop(e[0][1],1,e[1],e[8][0],e[2]);
+                  var tabRes = game_loop(e[0][1],1,e[1],e[8][0]);
                   play(tabRes,tourTable,missa);
                                
                 });
@@ -301,7 +256,7 @@
                   opacity: "toggle"
                 }, 1000, "linear", function() {
                   var tourTable=changeTour(e[5],idd);
-                  var tabRes = game_loop(e[0][2],2,e[1],e[8][0],e[2]);
+                  var tabRes = game_loop(e[0][2],2,e[1],e[8][0]);
                   play(tabRes,tourTable,missa);
                                 
                 });
@@ -335,7 +290,7 @@
 }
 
 
-    function game_loop(valeurCarte,indiceCarte,cartesDuTapis,carteArchem,rondaTringlaTable){
+    function game_loop(valeurCarte,indiceCarte,cartesDuTapis,carteArchem){
       var scoreCoup = 0 ; 
       cartesDuTapis = cartesDuTapis.sort((a, b) => (a%10) - (b%10));
       var carteAprendre = [];
@@ -367,17 +322,6 @@
       if(carteArchem!=-1 && (carteArchem%10) == (valeurCarte%10)){
         scoreCoup++;
         rchem = 1;
-      }
-
-      if(rondaCompte==false && rondaTringlaTable[idPlayer-1]==1 ){
-        scoreCoup++;
-        rondaCompte = true;
-        console.log("ronda compter dans le score");
-      }
-      if(tringlaCompte==false && rondaTringlaTable[idPlayer-1]==2 ){
-        scoreCoup+=5;
-        tringlaCompte = true;
-        
       }
 
       var tabRes = [];
@@ -449,12 +393,12 @@
       }).done(function(e) {
         {
           
-          $('#divTapis').remove();
-          $('#div0').remove();
-          $('#div1').remove();
-          $('#div2').remove();
-          $('#div3').remove();
-          $('#tableScore').remove();
+          $('#divTapis').empty();
+          $('#div0').empty();
+          $('#div1').empty();
+          $('#div2').empty();
+          $('#div3').empty();
+          $('#tableScore').empty();
           
           //Verifier si toutes les mains des joueurs sont vides pour redistribuer
           let b = false;
@@ -483,37 +427,84 @@
 
 
           for(let i=0;i<4;i++){
-            let $ladiv = $("<div>"); 
-            $ladiv.attr('id','div'+i);
+            let $ladiv = $('#div'+i);
             
             if(i==2){
-                  displayTapisCartes(e[1]);
+                  let $ladivt = $('#divTapis');
+                  for(let k=0;k<(e[1].length);k++){
+                    let $image = $("<img>");
+                    $image.attr('id',e[1][k]);
+                    $image.attr('src', '../images/'+e[1][k]+'.gif');
+                    $image.attr('width','50px');
+                    $image.attr('width','100px');
+                    $ladivt.append($image);
+                     
+                    
+                  }
+                  $('body').append("<br>");
+                  $('body').append("<br>");
+                  $('body').append("<br>");
                   
             }
              if(i==(idd-1)){
-              displayCartesPlayer(e[0],$ladiv);
+              for(let j=0;j<(e[0].length);j++){        
+                let $image = $("<img>");
+                $image.attr('id',e[0][j]);
+                $image.attr('src', '../images/'+e[0][j]+'.gif');
+                $image.attr('width','50px');
+                $image.attr('width','100px');
+                $ladiv.append($image);
+                        
+          }
 
           if(e[2][i]==1){
-                 displayRondaSymbole($ladiv);
+                 let $image = $("<img>");
+                  $image.attr('src', '../images/ronda_symbole.png');
+                  $image.attr('width','40px');
+                  $image.attr('width','40px');
+                  $ladiv.append($image);
                   
           }
           else{
             if(e[2][i]==2){
-              displayTringlaSymbole($ladiv);
+              let $image = $("<img>");
+                  $image.attr('src', '../images/tringla_symbole.png');
+                  $image.attr('width','40px');
+                  $image.attr('width','40px');
+                  $ladiv.append($image);
                   
             }
             }
           }
+
+
+
             else{
-              displayCartesBackOtherPlayers($ladiv,e[3][i]);
+              for(let j=0;j<e[3][i];j++){
+                  
+                  let $image = $("<img>");
+                  $image.attr('src', '../images/back.jpg');
+                  $image.attr('width','50px');
+                  $image.attr('width','100px');
+                  $ladiv.append($image);
+                           
+                }
                   
                 if(e[2][i]==1){
-                 displayRondaSymbole($ladiv);
+                 let $image = $("<img>");
+                  $image.attr('src', '../images/ronda_symbole.png');
+                  $image.attr('width','40px');
+                  $image.attr('width','40px');
+                  $ladiv.append($image);
                   
           }
             else{
               if(e[2][i]==2){
-                displayTringlaSymbole($ladiv);
+                let $image = $("<img>");
+                    $image.attr('src', '../images/tringla_symbole.png');
+                    $image.attr('width','40px');
+                    $image.attr('width','40px');
+                    $ladiv.append($image);
                     
               }
 
@@ -528,11 +519,10 @@
 
 
         displayScore(e[4]);
-
-        displayRondaSpan(e[2])
-        displayTringlaSpan(e[2]);
-
         
+              
+              
+              
 
         $missaExiste =  document.getElementById('missaSpan');
         if($missaExiste!=null){
@@ -579,9 +569,8 @@
                     opacity: "toggle"
                   }, 1000, "linear", function() {
                     var tourTable=changeTour(e[5],idd);
-                    var tabRes = game_loop(e[0][0],0,e[1],e[8][0],e[2]);
+                    var tabRes = game_loop(e[0][0],0,e[1],e[8][0]);
                     play(tabRes,tourTable,missa);
-                    removeRondaTringlaSpan();
                     
                     
                   });
@@ -602,9 +591,8 @@
                 opacity: "toggle"
               }, 1000, "linear", function() {
                 var tourTable=changeTour(e[5],idd);
-                var tabRes = game_loop(e[0][1],1,e[1],e[8][0],e[2]);
+                var tabRes = game_loop(e[0][1],1,e[1],e[8][0]);
                 play(tabRes,tourTable,missa);
-                removeRondaTringlaSpan();
                 
                 
               });
@@ -627,9 +615,8 @@
                 opacity: "toggle"
               }, 1000, "linear", function() {
                 var tourTable=changeTour(e[5],idd);
-                var tabRes = game_loop(e[0][2],2,e[1],e[8][0],e[2]);
+                var tabRes = game_loop(e[0][2],2,e[1],e[8][0]);
                 play(tabRes,tourTable,missa);
-                removeRondaTringlaSpan();
                 
                 
               });
@@ -658,25 +645,19 @@
       }).done(function(e) {
         {
             if(e[0]==99){
-              interval= setInterval(game_continue, 500);
+              interval= setInterval(game_continue, 1000);
             }
             else if(e[0]>=1 && e[0]<=4){
               let $tapisSpan = $("<span>Tapis + "+e[1]+"</span>");
               $tapisSpan.attr('id','tapisSpan');
               $('body').append($tapisSpan);
 
-              window.open("end_of_partie_page.php?id="+$_GET('id'),"Game Over", "height=100%, width=100%, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
+              window.open("end_of_partie_page.php?id="+$_GET('id'),"Game Over", "height=400px, width=500px, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
               console.log("partie terminé");
 
             }
             else{
-
-              rondaCompte= false;
-              tringlaCompte = false;
-              rondaDisp = false;
-              tringlaDisp = false;
-
-              interval= setInterval(game_continue, 500);
+              interval= setInterval(game_continue, 1000);
             }
             console.log("c'est fait"+e);
         }
@@ -687,6 +668,16 @@
       
       });
     }
+
+
+
+
+
+
+
+
+
+
 
 
     

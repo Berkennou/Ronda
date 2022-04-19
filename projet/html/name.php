@@ -7,14 +7,16 @@ foreach ($p as $partie) {
         $joueurs =$partie->elementPartie->joueurs; 
         for($i=0;$i<4;$i++){
             foreach($joueurs[$i] as $key => $value){
-                if($key = "pseudo"){
-                if($i!=3){
                 
-                    $txt = $txt.$value.',';
-                }
-                else{
-                    $txt = $txt.$value;
-                }
+                if($key == "pseudo"){
+                    $nnn = '"'.$value.'"';
+                    if($i!=3){
+                        
+                        $txt = $txt.$nnn.',';
+                    }
+                    else{
+                        $txt = $txt.$nnn;
+                    }
                 
               }
             }

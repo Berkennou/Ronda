@@ -81,7 +81,7 @@ foreach ($p as $partie) {
                 array_push($cf,$c[$k]);
             }
         }
-        if($score==0){
+        if($score==0 || $score==1 ){
             array_push($cf,$valeurCarte);
         } 
        
