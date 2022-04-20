@@ -1,8 +1,10 @@
 <?php
-header('Content-Type: application/json'); 
+header('Content-Type: application/json');
+$id2 = $_GET['idPartie'];
+$idp = intval($id2); 
 $p = json_decode(file_get_contents('../parties.json')) ;
 $txt = "[";
-foreach ($p as $partie) {
+$partie = $p[$idp];
     if (isset($partie->elementPartie->joueurs)){
         $joueurs =$partie->elementPartie->joueurs; 
         for($i=0;$i<4;$i++){
@@ -26,7 +28,7 @@ foreach ($p as $partie) {
 
 
 }
-}
+
 
 $txt = $txt."]";
 print $txt;

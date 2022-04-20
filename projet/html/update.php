@@ -4,9 +4,15 @@
     $f = json_decode(file_get_contents('../joueurs.json'),true) ;
     $e = count($f);
     
-    $id = -1;
+    $p = json_decode(file_get_contents('../parties.json'),true) ;
+    $idp = count($p);
 
-    $res = "[".$e.','.$id."]";
+    if($e==4){
+        $res = "[".$e.','.($idp-1)."]";
+    }
+    else{
+    $res = "[".$e.','.$idp."]";
+    }
 
     print($res);
 ?>

@@ -4,9 +4,12 @@ header('Content-Type: application/json');
 $id1= $_GET['id'];
 $id = intval($id1); 
 
+$id2 = $_GET['idPartie'];
+$idp = intval($id2); 
+
 $p = json_decode(file_get_contents('../parties.json')) ;
 $txt = "[";
-foreach ($p as $partie) {
+$partie = $p[$idp];
  if (isset($partie->elementPartie->mains)){
         $m=$partie->elementPartie->mains;
             $txt = $txt."[";
@@ -128,7 +131,7 @@ if (isset($partie->elementPartie->carteArchem)){
 }
 
 
-}
+
 $txt = $txt."]";
 print ($txt); 
 

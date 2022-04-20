@@ -30,10 +30,11 @@
 
 
     function endPartie(){
+      var idp =($_GET('idp')); 
         $.ajax({
         method: "GET",
         url: "game.php",
-        data:{"id":($_GET('id'))}
+        data:{"id":($_GET('id')),"idPartie":idp}
       }).done(function(e) {
         {   
 
@@ -69,10 +70,11 @@
 
 
     function displayNames(indiceOne,indiceTwo){
+      var idp =($_GET('idp')); 
         $.ajax({
         method: "GET",
         url: "name.php",
-        data:{}
+        data:{"idPartie":idp}
       }).done(function(e) {
         {   
           console.log(e[indiceOne]);

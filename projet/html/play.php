@@ -2,6 +2,9 @@
 $id= $_GET['id'];
 $longueur = $_GET['len'];
 
+$id2 = $_GET['idPartie'];
+$idp = intval($id2); 
+
 $tab = $_GET["str"];
 $tab = json_decode("$tab", true);
 
@@ -51,8 +54,7 @@ $m= array();
 $c = array(); 
 
 $carteArchem = -1;
-
-foreach ($p as $partie) {
+$partie = $p[$idp];
     if (isset($partie->elementPartie->mains)){
         $m=$partie->elementPartie->mains;
         unset($m[($id-1)][$indiceCarte]);
@@ -100,7 +102,7 @@ foreach ($p as $partie) {
     $tapisShuffle = $partie->elementPartie->tapis;
     $idd = $partie->idPartie;
     $djerya = $partie->elementPartie->djerya;
-}
+
 
 
 
@@ -108,11 +110,11 @@ $par = ["joueurs"=>$f,"mains"=>$m,"RondaTringla"=>$aRt,"CarteTapis"=>$cf,"scoreE
 $newA = ["idPartie"=>$idd,"elementPartie"=>$par];
 
 
+$p[$idp] = $newA;
+//$parties= array();
+//array_push($parties,$newA);
 
-$parties= array();
-array_push($parties,$newA);
-
-file_put_contents('../parties.json',json_encode($parties));
+file_put_contents('../parties.json',json_encode($p));
 
 
 

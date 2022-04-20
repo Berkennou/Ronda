@@ -205,10 +205,11 @@
 
         function game(){
         var idd=($_GET('id'));
+        var idp = ($_GET('idp'));
         $.ajax({
         method: "GET",
         url: "game.php",
-        data:{"id":idd}
+        data:{"id":idd,"idPartie":idp}
       }).done(function(e) {
         { 
           console.log(e);
@@ -415,10 +416,11 @@
           j++;
         }
         var idd=($_GET('id'));
+        var idp =($_GET('idp')); 
         $.ajax({
         method: "GET",
         url: "play.php",
-        data:{"str":JSON.stringify(stuff),"id":idd,"len":tabRes.length}
+        data:{"str":JSON.stringify(stuff),"id":idd,"idPartie":idp,"len":tabRes.length}
       }).done(function(e) {
         {
 
@@ -443,10 +445,11 @@
 
     function game_continue(){
       var idd =($_GET('id'));
+      var idp =($_GET('idp')); 
         $.ajax({
         method: "GET",
         url: "game.php",
-        data:{"id":idd}
+        data:{"id":idd,"idPartie":idp}
       }).done(function(e) {
         {
           
@@ -652,10 +655,11 @@
 
 
     function redistribuer(){
+      var idp =($_GET('idp')); 
         $.ajax({
         method: "GET",
         url: "redistribuer.php",
-        data:{}
+        data:{"idPartie":idp}
       }).done(function(e) {
         {
             if(e[0]==99){
@@ -666,7 +670,7 @@
               $tapisSpan.attr('id','tapisSpan');
               $('body').append($tapisSpan);
 
-              window.open("end_of_partie_page.php?id="+$_GET('id'),"Game Over", "height=1000px, width=1000px;, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
+              window.open("end_of_partie_page.php?id="+$_GET('id')+"&idp="+idp,"Game Over", "height=1000px, width=1200px;, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
               console.log("partie terminé");
 
             }
@@ -692,10 +696,11 @@
 
 
     function displayNames(){
+      var idp =($_GET('idp')); 
         $.ajax({
         method: "GET",
         url: "name.php",
-        data:{}
+        data:{"idPartie":idp}
       }).done(function(e) {
         {
             

@@ -11,6 +11,7 @@
     <script> 
 var intervalId=null;
 var  hm = null;
+var idPartie = null;
 
 function update(){
         
@@ -23,10 +24,13 @@ function update(){
           if(hm==null){
             hm=e[0];
           }
-          if(e[0]==4){
+          if(idPartie==null){
+            idPartie = e[1];
+          }
+          if(e[0]==4 || (hm!=null && e[0]==0)){
             let $playButton = $("<button>Play</button>");
             $playButton.attr('id', 'playbutton');
-            $playButton.attr('onclick', 'window.location.href = "partie_page.php?id="+hm;');
+            $playButton.attr('onclick', 'window.location.href = "partie_page.php?id="+hm+"&idp="+idPartie;');
             $playButton.attr('class','buttons');
             $("#divSign").append($playButton); 
 
@@ -47,7 +51,7 @@ function update(){
             $('body').append($divP);
 
 
-
+            setEmptyJsonPlayers();
             clearTimeout(intervalId);
           }
           console.log(e[0]+"et "+"hm = "+hm);
@@ -93,6 +97,31 @@ function update(){
       
       });
     }
+
+
+
+    function setEmptyJsonPlayers(){
+        $.ajax({
+        method: "GET",
+        url: "setEmpty.php",
+        data:{}
+      }).done(function(e) {
+        {
+            
+            console.log(e);
+            
+        }
+
+        
+      }).fail(function(e) {
+        console.log(e);       
+      
+      });
+    }  
+
+
+
+
 
     function displayHelp(){
       var level = $("#level").val();

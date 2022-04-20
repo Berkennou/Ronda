@@ -1,7 +1,10 @@
 <?php
 header('Content-Type: application/json'); 
+$id2 = $_GET['idPartie'];
+$idp = intval($id2); 
 $p = json_decode(file_get_contents('../parties.json'));
-foreach ($p as $partie) {
+
+$partie = $p[$idp];
     $b=true;
     if (isset($partie->elementPartie->mains)){
         $mainsTest = array();
@@ -116,7 +119,7 @@ foreach ($p as $partie) {
 
 
 
-}
+
 
 file_put_contents('../parties.json',json_encode($p));
 
