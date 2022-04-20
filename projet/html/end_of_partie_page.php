@@ -77,7 +77,7 @@
         {   
           console.log(e[indiceOne]);
           console.log(e[indiceTwo]);
-          let $spanWinner = $("<span> Winners  <br>    "+e[indiceOne] +"       "+ e[indiceTwo]+ "<br></span>");
+          let $spanWinner = $("<span> Winners  <br><br> <br>   "+e[indiceOne] +"   &    "+ e[indiceTwo]+ "<br></span>");
           $spanWinner.attr('id','spanWinner');
           $('body').append($spanWinner);   
             

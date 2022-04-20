@@ -81,6 +81,57 @@ tr, td{
   color : white;
   
 }
+#name0,#name1,#name2,#name3{
+  background-color: transparent;
+  color : white;
+  font-size: 22px;
+  padding : 15px;
+  border : gray solid 3px;
+  font-weight: bold;
+  border-radius: 8px;
+  text-align: center;
+}
+#name0 {
+  position : absolute;
+  left : 28%;
+  top : 10%;
+}
+
+#name1 {
+  position : absolute;
+  left : 85%;
+  top : 60%;  
+}
+
+#name2{
+  position : absolute;
+  left : 3%;
+  top : 60%;
+  
+}
+#name3{
+  position : absolute;
+  left : 59%;
+  top : 85%;
+  
+}
+
+#name0:hover,#name1:hover,#name2:hover,#name3:hover{
+  color : yellow;
+  background : blue;
+  font-size: 27px;
+  border: white solid 3px;
+  border-radius: 15px;
+
+
+}
+
+
+
+
+
+
+
 #rondaSpan0 {
   position : absolute;
   left : 76%;

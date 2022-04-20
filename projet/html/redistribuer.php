@@ -76,6 +76,7 @@ foreach ($p as $partie) {
 
                 $djerya = $partie->elementPartie->djerya;
                 $partie->elementPartie->djerya = $djerya-1;
+                $partie->elementPartie->dernierEncaissant = [-1,0];
                 
                 $r = 99;
                 print "[".$r.",".$r."]";

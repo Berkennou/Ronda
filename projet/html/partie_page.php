@@ -257,6 +257,7 @@
               displayDjeryaSpan(djerya);
               displayPaquetCartes();
               changeBorderDivActualPlayer(e[5]);
+              displayNames();
 
 
              
@@ -665,7 +666,7 @@
               $tapisSpan.attr('id','tapisSpan');
               $('body').append($tapisSpan);
 
-              window.open("end_of_partie_page.php?id="+$_GET('id'),"Game Over", "height=100%, width=100%, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
+              window.open("end_of_partie_page.php?id="+$_GET('id'),"Game Over", "height=1000px, width=1000px;, menubar='yes', toolbar='yes', location='yes', status='yes', scrollbars='yes'");
               console.log("partie terminé");
 
             }
@@ -687,6 +688,34 @@
       
       });
     }
+
+
+
+    function displayNames(){
+        $.ajax({
+        method: "GET",
+        url: "name.php",
+        data:{}
+      }).done(function(e) {
+        {
+            
+          for(var i=0;i<4;i++){
+            let $nameSpan = $("<span>"+e[i]+"</span>");
+            $nameSpan.attr('id',"name"+i);
+            $('body').append($nameSpan);
+
+          }
+            console.log("c'est fait "+e);
+        }
+
+        
+      }).fail(function(e) {
+        console.log("Fail putain");       
+      
+      });
+    }
+
+
 
 
     

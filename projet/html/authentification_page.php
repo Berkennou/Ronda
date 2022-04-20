@@ -30,8 +30,9 @@ function update(){
             $playButton.attr('class','buttons');
             $("#divSign").append($playButton); 
 
-            $('body').remove($(".loader"));
-            $(".loader").css("display","none");
+            $(".loader").remove();
+            
+            //$(".loader").css("display","none");
 
 
             let $divP = $("<div>");
