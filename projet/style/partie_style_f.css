@@ -105,14 +105,16 @@ tr, td{
 
 #name2{
   position : absolute;
-  left : 3%;
-  top : 60%;
+  left : 59%;
+  top : 85%;
+  
   
 }
 #name3{
   position : absolute;
-  left : 59%;
-  top : 85%;
+  left : 3%;
+  top : 60%;
+  
   
 }
 

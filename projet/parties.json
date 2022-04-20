@@ -1,1 +1,1 @@
-[]
+[{"idPartie":0,"elementPartie":{"joueurs":[{"id_joueur":0,"pseudo":"","level":"beginner"},{"id_joueur":1,"pseudo":"idir","level":"beginner"},{"id_joueur":2,"pseudo":"","level":"beginner"},{"id_joueur":3,"pseudo":"amer","level":"beginner"}],"mains":[[7,24,15],[21,26,38],[0,12,2],[6,25,33]],"RondaTringla":[0,0,1,0],"CarteTapis":[8,32,37,19],"scoreEquipe1":0,"scoreEquipe2":0,"tapis":[36,31,16,22,20,14,1,9,30,3,11,35,17,34,39,27,28,4,18,5,29,10,23,13],"tour":[1,0,0,0],"missa":0,"djerya":2,"carteArchem":[-1,0],"dernierEncaissant":[-1,0]}}]

@@ -4,7 +4,3 @@
     $f=array();
     file_put_contents('../joueurs.json',json_encode($f));
     print "ok";
-
-
-
-?>
