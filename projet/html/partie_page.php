@@ -840,7 +840,11 @@
         console.log("Fail to get messages");       
       });
     }
-
+    $(document).keydown(function(event){
+          if(event.keyCode == 13){
+            send_message();
+          }
+    });
   //Appel à la foction game qui fera appel à son tour à la fonction gam
     game();
   </script>

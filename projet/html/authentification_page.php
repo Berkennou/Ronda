@@ -19,6 +19,12 @@
       si c'est le cas elle rajoute un bouton cliquable qui méne à la partie 
       crée pour ces 4 joueurs.
      */
+
+    $(document).keydown(function(event){
+          if(event.keyCode == 13){
+            submit();
+          }
+    });
     function update() {
       $.ajax({
         method: "GET",
