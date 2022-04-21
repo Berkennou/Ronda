@@ -295,6 +295,7 @@
           if (e[5][idd - 1] == 1) {
 
             $("#" + e[0][0]).click(function() {
+              $( "#"+e[0][0] ).css("pointer-events","none");
               $("#" + e[0][0]).animate({
 
 
@@ -312,6 +313,7 @@
 
 
             $("#" + e[0][1]).click(function() {
+              $( "#"+e[0][1] ).css("pointer-events","none");
               $("#" + e[0][1]).animate({
 
                 width: ["toggle", "swing"],
@@ -327,6 +329,7 @@
 
 
             $("#" + e[0][2]).click(function() {
+              $( "#"+e[0][2] ).css("pointer-events","none");
               $("#" + e[0][2]).animate({
                 width: ["toggle", "swing"],
                 height: ["toggle", "swing"],
@@ -617,7 +620,7 @@
 
           //Changemenkt des bordur des dives et les faires passer pour le joueur à qui est le tour de jouer
           changeBorderDivActualPlayer(e[5]);
-
+          get_message();
           /*   Animation et appel en cas de clique sur une image lorsque c'est au joueur courant de jouer à  : 
                la fonction qui met à jour le tour dans la table de tour des joueurs
                la fonction qui met à jour le tour  la fonction calculant le score 
@@ -627,6 +630,7 @@
           if (e[5][idd - 1] == 1) {
 
             $("#" + e[0][0]).click(function() {
+              $( "#"+e[0][0] ).css("pointer-events","none");
               let pos = $("#" + e[0][0])[0].getBoundingClientRect();
               let posTapis = $("#divTapis")[0].getBoundingClientRect();
 
@@ -654,6 +658,7 @@
 
 
             $("#" + e[0][1]).click(function() {
+              $( "#"+e[0][1] ).css("pointer-events","none");
               let pos = $("#" + e[0][1])[0].getBoundingClientRect();
               let posTapis = $("#divTapis")[0].getBoundingClientRect();
               $("#" + e[0][1]).appendTo("body").css({
@@ -682,6 +687,7 @@
 
 
             $("#" + e[0][2]).click(function() {
+              $( "#"+e[0][2] ).css("pointer-events","none");
               let pos = $("#" + e[0][2])[0].getBoundingClientRect();
               let posTapis = $("#divTapis")[0].getBoundingClientRect();
               $("#" + e[0][2]).appendTo("body").css({
@@ -794,7 +800,46 @@
     }
 
 
+    function send_message(){
+      var idd =($_GET('id'));
+      var idp =($_GET('idp')); 
+      var message = $("#send").val();
+        $.ajax({
+        method: "GET",
+        url: "chat.php",
+        data:{"id_game":idp,"id_player":idd,"message":message}
+      }).done(function(e) {
+        {
+          $('#send').val("");
+        }
+      }).fail(function(e) {
+        console.log("Fail to send message");       
+      
+      });
+    }
 
+    function get_message(){
+      var idp =($_GET('idp')); 
+        $.ajax({
+        method: "GET",
+        url: "messages.php",
+        data:{"id_game":idp}
+      }).done(function(e) {
+        {
+          
+          $('#messages').empty();
+          let paragraphe = "";
+          for(var i=0;i<e.length;i++){
+            
+            paragraphe = paragraphe+e[i][0]+" : "+e[i][1]+"<br>";
+          }
+          let $par = $("<p>"+paragraphe+"</p>");
+          $('#messages').append($par);
+        }
+      }).fail(function(e) {
+        console.log("Fail to get messages");       
+      });
+    }
 
   //Appel à la foction game qui fera appel à son tour à la fonction gam
     game();
@@ -804,5 +849,10 @@
 <body>
 
 </body>
-
+      <div id = "chatDiv">
+        <div id = "messages">
+        </div>
+        <input type="text"  id="send"/>
+        <button id="sendbtn"  onclick="send_message()"> Send </button>
+      </div>
 </html>

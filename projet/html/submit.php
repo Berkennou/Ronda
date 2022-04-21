@@ -121,7 +121,16 @@ if(count($f)  == 4)
     $newjsonstring2 = json_encode($parties);
     file_put_contents('../parties.json',$newjsonstring2);
    
-
+    $chats = json_decode(file_get_contents('../chat.json'),true);
+    $message = array();
+    array_push($message,"admin");
+    array_push($message,"You can chat here");
+    $messages = array();
+    array_push($messages,$message);
+    $chat = ["id"=>$id,"messages"=>$messages];
+    array_push($chats,$chat);
+    
+    file_put_contents('../chat.json',json_encode($chats));
 
     
     
