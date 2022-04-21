@@ -39,12 +39,18 @@
             idPartie = e[1];
           }
           if (e[0] == 4 || (hm != null && e[0] == 0)) {
+
             let $playButton = $("<button>Play</button>");
             $playButton.attr('id', 'playbutton');
             $playButton.attr('onclick', 'window.location.href = "partie_page.php?id="+hm+"&idp="+idPartie;');
             $playButton.attr('class', 'buttons');
             $("#divSign").append($playButton);
-
+            $(document).keydown(function(event){
+            if(event.keyCode == 13){
+                  window.location.replace("partie_page.php?id="+hm+"&idp="+idPartie);
+                  }
+            });
+            
             $(".loader").remove();
 
             let $divP = $("<div>");
