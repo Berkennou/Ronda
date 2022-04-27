@@ -14,6 +14,7 @@
     var intervalId = null;
     var hm = null;
     var idPartie = null;
+    var cliqueSign = false;
 
     /*Fonction qui vérifier si 4 joeurs sont inscris pour jouer
       si c'est le cas elle rajoute un bouton cliquable qui méne à la partie 
@@ -21,8 +22,9 @@
      */
 
     $(document).keydown(function(event){
-          if(event.keyCode == 13){
+          if(event.keyCode == 13 && cliqueSign==false ){
             submit();
+            cliqueSign = true;
           }
     });
     function update() {
@@ -39,7 +41,7 @@
             idPartie = e[1];
           }
           if (e[0] == 4 || (hm != null && e[0] == 0)) {
-
+            setEmptyJsonPlayers();
             let $playButton = $("<button>Play</button>");
             $playButton.attr('id', 'playbutton');
             $playButton.attr('onclick', 'window.location.href = "partie_page.php?id="+hm+"&idp="+idPartie;');
@@ -65,7 +67,7 @@
             $('body').append($divP);
 
 
-            setEmptyJsonPlayers();
+           
             clearTimeout(intervalId);
           }
           console.log(e[0] + "et " + "hm = " + hm);
@@ -128,7 +130,6 @@
         data: {}
       }).done(function(e) {
         {
-
           console.log(e);
 
         }

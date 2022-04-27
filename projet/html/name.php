@@ -32,3 +32,4 @@ $partie = $p[$idp];
 
 $txt = $txt."]";
 print $txt;
+?>

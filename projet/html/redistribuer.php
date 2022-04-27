@@ -122,6 +122,4 @@ $partie = $p[$idp];
 
 
 file_put_contents('../parties.json',json_encode($p));
-
-
 ?>
